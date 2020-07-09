@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -16,21 +17,21 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+		horizontalMove = CrossPlatformInputManager.GetAxis("Horizontal") * runSpeed;
 
-		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-		if (Input.GetButtonDown("Jump"))
+		if (CrossPlatformInputManager.GetButtonDown("Jump"))
 		{
 			jump = true;
 			animator.SetBool("IsJumping", true);
 		}
 
-		if (Input.GetButtonDown("Slide"))
+		if (CrossPlatformInputManager.GetButtonDown("Slide"))
 		{
 			slide = true;
             animator.SetBool("IsSliding", true);
-        } else if (Input.GetButtonUp("Slide"))
+        } else if (CrossPlatformInputManager.GetButtonUp("Slide"))
 		{
 			slide = false;
             animator.SetBool("IsSliding", false);
